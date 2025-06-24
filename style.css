@@ -48,3 +48,70 @@ button {
   margin-right: 10px;
   border: 1px solid #ccc;
 }
+
+body {
+  font-family: sans-serif;
+  background: #f9fafb;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.container {
+  max-width: 600px;
+  width: 100%;
+}
+
+input {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px 20px;
+  background: #1079ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+#output {
+  margin-top: 1.5rem;
+}
+
+.color-swatch {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.swatch-box {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+}
+
+pre {
+  background: #f3f4f6;
+  padding: 1rem;
+  border-radius: 5px;
+  white-space: pre-wrap;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  margin-top: 1rem;
+}
+
+#copyButton {
+  display: none;
+  margin-top: 0.5rem;
+}

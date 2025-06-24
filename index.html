@@ -3,18 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Symmetrical Color Palette Generator</title>
+  <title>Color Palette Generator</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://unpkg.com/chroma-js@2.1.0/chroma.min.js"></script>
 </head>
 <body>
   <div class="container">
     <h1>🎨 Symmetrical Color Palette Generator</h1>
-    <p>Enter a base HEX color (your Primary):</p>
+    <p>Enter your base HEX color (e.g. #1079ff):</p>
     <input type="text" id="colorInput" placeholder="#1079ff" />
     <button onclick="generatePalette()">Generate Palette</button>
+    
     <div id="output"></div>
+
+    <h3>📦 Copy-ready JSON:</h3>
+    <pre id="codeBlock"></pre>
+    <button id="copyButton" onclick="copyCode()">Copy JSON</button>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
