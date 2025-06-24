@@ -1,20 +1,25 @@
 function generatePalette() {
-  const inputs = Array.from(document.querySelectorAll('#inputs input')).map(i => i.value.trim());
+  const input = document.querySelector('#colorInput').value.trim();
   const output = document.getElementById('output');
 
-  if (inputs.length !== 6 || inputs.some(c => !/^#?[0-9a-f]{6}$/i.test(c))) {
-    output.textContent = 'Please enter 6 valid HEX colors (e.g., #1079ff)';
+  if (!/^#?[0-9a-f]{6}$/i.test(input)) {
+    output.textContent = 'Please enter a valid HEX color (e.g., #1079ff)';
     return;
   }
 
-  // Ensure all colors have leading #
-  const colors = inputs.map(c => c.startsWith('#') ? c : '#' + c);
+  const base = input.startsWith('#') ? input : '#' + input;
+  const steps = 5;
 
-  try {
-    const shades = chroma.scale(colors).mode('lab').colors(11);
-    const namedShades = shades.map((hex, i) => `primary${(i + 1) * 10}: '${hex}'`);
-    output.textContent = namedShades.join('\n');
-  } catch (err) {
-    output.textContent = 'Error generating palette: ' + err.message;
-  }
+  const lightShades = Array.from({ length: steps }, (_, i) =>
+    chroma.mix('#ffffff', base, (steps - i) / steps, 'lab').hex()
+  );
+
+  const darkShades = Array.from({ length: steps }, (_, i) =>
+    chroma.mix('#000000', base, (i + 1) / steps, 'lab').hex()
+  );
+
+  const finalPalette = [...lightShades, base, ...darkShades];
+
+  const namedShades = finalPalette.map((hex, i) => `primary${(i + 1) * 10}: '${hex}'`);
+  output.textContent = namedShades.join('\n');
 }
