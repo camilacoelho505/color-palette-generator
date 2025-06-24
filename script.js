@@ -9,21 +9,19 @@ function generatePalette() {
   }
 
   const base = input.startsWith('#') ? input : '#' + input;
-
-  // Lighter shades: mix with white
-  const lightShades = Array.from({ length: 5 }, (_, i) =>
-    chroma.mix('#ffffff', base, 1 - (i + 1) * 0.15, 'lab').hex()
-  ).reverse(); // from lightest to less light
-
-  // Darker shades: mix with black
-  const darkShades = Array.from({ length: 5 }, (_, i) =>
-    chroma.mix(base, '#000000', (i + 1) * 0.15, 'lab').hex()
-  );
-
+  const steps = 5;
   const names = [
     'Primary-10', 'Primary-20', 'Primary-30', 'Primary-40', 'Primary-50',
     'Primary-60', 'Primary-70', 'Primary-80', 'Primary-90', 'Primary-100'
   ];
+
+  const lightShades = Array.from({ length: steps }, (_, i) =>
+    chroma.mix('#ffffff', base, (i + 1) / (steps + 1), 'lab').hex()
+  );
+
+  const darkShades = Array.from({ length: steps }, (_, i) =>
+    chroma.mix(base, '#000000', (i + 1) / (steps + 1), 'lab').hex()
+  );
 
   const fullPalette = [...lightShades, ...darkShades];
 
