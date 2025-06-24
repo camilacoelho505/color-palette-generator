@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color Palette Generator</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/chroma-js@2.1.0/chroma.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Color Palette Generator</h1>
+    <p>Enter 6 HEX base colors (lightest → darkest):</p>
+    <div id="inputs">
+      <input type="text" placeholder="#dbebff" />
+      <input type="text" placeholder="#c3ddff" />
+      <input type="text" placeholder="#87bcff" />
+      <input type="text" placeholder="#1079ff" />
+      <input type="text" placeholder="#0055c2" />
+      <input type="text" placeholder="#003a75" />
+    </div>
+    <button onclick="generatePalette()">Generate Palette</button>
+    <pre id="output"></pre>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
