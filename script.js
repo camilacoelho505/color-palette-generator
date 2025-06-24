@@ -19,7 +19,7 @@ function generatePalette() {
   const darkSteps = 5;
 
   const lightNames = ['Primary-5', 'Primary-10', 'Primary-20', 'Primary-30', 'Primary-40', 'Primary-50'];
-  const darkNames  = ['Primary-60', 'Primary-70', 'Primary-80', 'Primary-90', 'Primary-100'];
+  const darkNames = ['Primary-60', 'Primary-70', 'Primary-80', 'Primary-90', 'Primary-100'];
 
   const lightShades = Array.from({ length: lightSteps }, (_, i) =>
     chroma.mix('#ffffff', base, (i + 1) / (lightSteps + 1), 'lab').hex()
@@ -47,7 +47,15 @@ function generatePalette() {
     output.appendChild(div);
   });
 
-  // Show formatted code block
   codeBlock.textContent = JSON.stringify(palette, null, 2);
   copyButton.style.display = 'inline-block';
+}
+
+function copyCode() {
+  const code = document.getElementById('codeBlock').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    const btn = document.getElementById('copyButton');
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => (btn.textContent = 'Copy JSON'), 1500);
+  });
 }
