@@ -10,15 +10,9 @@
 <body>
   <div class="container">
     <h1>Color Palette Generator</h1>
-    <p>Enter 6 HEX base colors (lightest → darkest):</p>
-    <div id="inputs">
-      <input type="text" placeholder="#dbebff" />
-      <input type="text" placeholder="#c3ddff" />
-      <input type="text" placeholder="#87bcff" />
-      <input type="text" placeholder="#1079ff" />
-      <input type="text" placeholder="#0055c2" />
-      <input type="text" placeholder="#003a75" />
-    </div>
+    <p>Enter a base HEX color (e.g. #1079ff):</p>
+<input type="text" id="colorInput" placeholder="#1079ff" />
+
     <button onclick="generatePalette()">Generate Palette</button>
     <pre id="output"></pre>
   </div>
