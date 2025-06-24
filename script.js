@@ -35,13 +35,14 @@ function generatePalette() {
   const palette = {};
 
   allShades.forEach((hex, i) => {
-    palette[allNames[i]] = hex;
+    const name = allNames[i];
+    palette[name] = hex;
 
     const div = document.createElement('div');
     div.className = 'color-swatch';
     div.innerHTML = `
       <div class="swatch-box" style="background-color: ${hex};"></div>
-      <code>${allNames[i]}: '${hex}'</code>
+      <code>${name}: '${hex}'</code>
     `;
     output.appendChild(div);
   });
@@ -49,13 +50,4 @@ function generatePalette() {
   // Show formatted code block
   codeBlock.textContent = JSON.stringify(palette, null, 2);
   copyButton.style.display = 'inline-block';
-}
-
-function copyCode() {
-  const code = document.getElementById('codeBlock').textContent;
-  navigator.clipboard.writeText(code).then(() => {
-    const btn = document.getElementById('copyButton');
-    btn.textContent = '✅ Copied!';
-    setTimeout(() => (btn.textContent = 'Copy JSON'), 1500);
-  });
 }
