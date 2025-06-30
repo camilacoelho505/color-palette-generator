@@ -23,7 +23,7 @@ function generatePalette() {
 
   const lightShades = Array.from({ length: 4 }, (_, i) =>
     chroma.mix('#ffffff', base, 1 - (i + 1) * 0.2, 'lab').hex()
-  ).reverse(); // lightest to base
+  ).reverse();
 
   const darkShades = Array.from({ length: 6 }, (_, i) =>
     chroma.mix(base, '#000000', (i + 1) * 0.1, 'lab').hex()
@@ -48,8 +48,10 @@ function generatePalette() {
 
   codeBlock.textContent = JSON.stringify(palette, null, 2);
   copyButton.style.display = 'inline-block';
+}
 
-  function copyToClipboard() {
+// ✅ Place this **outside** the generatePalette function
+function copyToClipboard() {
   const codeBlock = document.getElementById('codeBlock');
   const text = codeBlock.textContent;
 
@@ -58,6 +60,4 @@ function generatePalette() {
   }).catch(err => {
     alert('❌ Failed to copy: ' + err);
   });
-}
-
 }
