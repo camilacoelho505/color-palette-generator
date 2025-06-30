@@ -16,14 +16,14 @@ function generatePalette() {
   const base = input.startsWith('#') ? input : '#' + input;
 
   const names = [
-    'Primary-5', 'Primary-10', 'Primary-20', 'Primary-30',
-    'Primary-40', // Input color (exact)
-    'Primary-50', 'Primary-60', 'Primary-70', 'Primary-80', 'Primary-90', 'Primary-100'
+    'xColor-50', 'xColor-100', 'xColor-200', 'xColor-300',
+    'xColor-400', // input color
+    'xColor-500', 'xColor-600', 'xColor-700', 'xColor-800', 'xColor-900', 'xColor-950'
   ];
 
   const lightShades = Array.from({ length: 4 }, (_, i) =>
     chroma.mix('#ffffff', base, 1 - (i + 1) * 0.2, 'lab').hex()
-  ).reverse(); // From lightest to closest
+  ).reverse(); // lightest to base
 
   const darkShades = Array.from({ length: 6 }, (_, i) =>
     chroma.mix(base, '#000000', (i + 1) * 0.1, 'lab').hex()
