@@ -15,27 +15,33 @@ function generatePalette() {
 
   const base = input.startsWith('#') ? input : '#' + input;
 
-  const lightSteps = 6;
-  const darkSteps = 5;
+  const shadeNames = [
+    'Primary-5', 'Primary-10', 'Primary-20', 'Primary-30',
+    'Primary-40', // Input color
+    'Primary-50', 'Primary-60', 'Primary-70', 'Primary-80', 'Primary-90', 'Primary-100'
+  ];
 
-  const lightNames = ['Primary-5', 'Primary-10', 'Primary-20', 'Primary-30', 'Primary-40', 'Primary-50'];
-  const darkNames = ['Primary-60', 'Primary-70', 'Primary-80', 'Primary-90', 'Primary-100'];
-
-  const lightShades = Array.from({ length: lightSteps }, (_, i) =>
-    chroma.mix('#ffffff', base, (i + 1) / (lightSteps + 1), 'lab').hex()
+  const lightShades = Array.from({ length: 4 }, (_, i) =>
+    chroma.mix('#ffffff', base, (i + 1) * 0.15, 'lab').hex()
   );
 
-  const darkShades = Array.from({ length: darkSteps }, (_, i) =>
-    chroma.mix(base, '#000000', (i + 1) / (darkSteps + 1), 'lab').hex()
+  const darkShades = Array.from({ length: 6 }, (_, i) =>
+    chroma.mix(base, '#000000', (i + 1) * 0.12, 'lab').hex()
   );
 
-  const allShades = [...lightShades, ...darkShades];
-  const allNames = [...lightNames, ...darkNames];
+  const allShades = [
+    lightShades[0], // Primary-5
+    lightShades[1], // Primary-10
+    lightShades[2], // Primary-20
+    lightShades[3], // Primary-30
+    base,           // Primary-40
+    ...darkShades   // Primary-50 → Primary-100
+  ];
 
   const palette = {};
 
   allShades.forEach((hex, i) => {
-    const name = allNames[i];
+    const name = shadeNames[i];
     palette[name] = hex;
 
     const div = document.createElement('div');
@@ -49,13 +55,4 @@ function generatePalette() {
 
   codeBlock.textContent = JSON.stringify(palette, null, 2);
   copyButton.style.display = 'inline-block';
-}
-
-function copyCode() {
-  const code = document.getElementById('codeBlock').textContent;
-  navigator.clipboard.writeText(code).then(() => {
-    const btn = document.getElementById('copyButton');
-    btn.textContent = '✅ Copied!';
-    setTimeout(() => (btn.textContent = 'Copy JSON'), 1500);
-  });
 }
