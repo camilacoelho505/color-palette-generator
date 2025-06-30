@@ -48,4 +48,16 @@ function generatePalette() {
 
   codeBlock.textContent = JSON.stringify(palette, null, 2);
   copyButton.style.display = 'inline-block';
+
+  function copyToClipboard() {
+  const codeBlock = document.getElementById('codeBlock');
+  const text = codeBlock.textContent;
+
+  navigator.clipboard.writeText(text).then(() => {
+    alert('✅ JSON copied to clipboard!');
+  }).catch(err => {
+    alert('❌ Failed to copy: ' + err);
+  });
+}
+
 }
